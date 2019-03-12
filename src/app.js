@@ -1,15 +1,8 @@
-const constriants = {
-  audio: true,
-  video: {
-    width: { ideal: 600 },
-    height: { ideal: 600 },
-    facingMode: "user"
-  }
-}
+import { constraints } from "./util";
 
-navigator.mediaDevices.getUserMedia(constriants).then(stream => {
+navigator.mediaDevices.getUserMedia(constraints).then(stream => {
   const video = document.querySelector("video");
-  video.srcObject = stream;
   video.onloadedmetadata = e => video.play();
+  video.srcObject = stream;
 });
 
