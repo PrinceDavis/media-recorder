@@ -1,11 +1,12 @@
 /**
  * Capture a frame from the streaming video
  * @param {canvas object} canvas canvas on which the captured frame is manipulated
- * @param {video object} video html element displaying captured media from user device
+ * @param {video object} video html element for displaying captured media from user device
+ * @param {img object} photo html element for displaying captured picture frame
  * @param {number} height height of canvas
  * @param {number} width width of canvas
  */
-export const takePicture = ({canvas, video, width, height, photo}) => {
+export const takePicture = ({canvas, video, photo, width, height}) => {
   const context = canvas.getContext("2d");
   if(width && height) {
     canvas.height = height;

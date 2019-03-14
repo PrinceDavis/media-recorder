@@ -1,8 +1,13 @@
+main {
+  display: flex;
+  flex-flow: row nowrap;
+}
 .video__container {
   width: 320px;
   height: 240px;
   position: relative;
   margin-bottom: 4rem;
+  margin-right: 2rem;
 }
 
 #video {
@@ -15,6 +20,7 @@
 #startbutton {
   display: block;
   position: absolute;
+  outline: none;
   left: 50%;
   top: 85%;
   transform: translate(-50%);
@@ -24,12 +30,13 @@
   font-size: 14px;
   font-family: 'Lucida Grande', 'Arial', sans-serif;
   color: rgba(255, 255, 255, 1);
+  cursor: pointer;
 }
 
 #photo {
   border: 1px solid black;
   box-shadow: 2px 2px 3px black;
-  width: 320px;
+  width: 250px;
   height: 240px;
 }
 

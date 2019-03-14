@@ -1,14 +1,16 @@
-// import { constraints } from "./util";
+import { takePicture, clearPhoto } from "./picture-manager";
+import { constraints } from "./util";
 import "./css/picture.css";
 
+let   streaming = false;
+let   canvas    = null;
+let   video     = null;
+let   photo     = null;
+let   startBtn  = null;
+const width     = 340;
+let   height    = 0;
 
-let   streaming    = false;
-let   canvas      = null;
-let   video       = null;
-let   photo       = null;
-let   startbutton = null;
-const width       = 320;
-const height      = 0;
+
 
 /**
  * start video streaming
@@ -20,22 +22,16 @@ const startUp = () => {
   photo    = document.getElementById("photo");
 
   /**
-   * settings that media captured from user device
-   * need to abide by
+   * tell the browser not to capture audio data
    */
-  const constraint = {
-    video: {
-      width: { ideal: 600 },
-      height: { ideal: 600 },
-      facingMode: "user"
-    },
-  }
+  const settings = constraints;
+  delete settings.audio;
 
  /**
   * get stream data from media devices on a
   * user system
   */
-  navigator.mediaDevices.getUserMedia(constraint)
+  navigator.mediaDevices.getUserMedia(settings)
     .then(stream => {
       video.srcObject = stream;
       video.play();
@@ -46,7 +42,7 @@ const startUp = () => {
    */
   video.addEventListener("canplay", ev => {
     if(!streaming) {
-      height = video.videoHeight / (videoWidth/width);
+      height = video.videoHeight / (video.videoWidth/width);
 
       canvas.setAttribute("height", height);
       video.setAttribute("height", height);
@@ -60,12 +56,13 @@ const startUp = () => {
    * response to user click interaction with
    * a button in viewport
    */
-  startbutton.addEventListener("click", ev => {
-    takePicture();
+  startBtn.addEventListener("click", ev => {
+    takePicture({canvas, video, photo, width, height});
     ev.preventDefault();
   }, false);
-
-
-  clearphoto();
+  clearPhoto(canvas, photo);
 }
+
+startUp()
+// document.addEventListener("load", startUp, false);
 
