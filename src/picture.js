@@ -10,8 +10,6 @@ let   startBtn  = null;
 const width     = 340;
 let   height    = 0;
 
-
-
 /**
  * start video streaming
  */
@@ -24,7 +22,7 @@ const startUp = () => {
   /**
    * tell the browser not to capture audio data
    */
-  const settings = constraints;
+  const settings = { ...constraints };
   delete settings.audio;
 
  /**
@@ -64,5 +62,4 @@ const startUp = () => {
 }
 
 startUp()
-// document.addEventListener("load", startUp, false);
 
